@@ -282,8 +282,8 @@ build-check = [
 [tool.hatch.envs.lint]
 template = "lint"  # don't inherit from default!
 dependencies = [
-    "mypy==1.11.1",
-    "ruff==0.5.7",
+    "mypy==1.13.0",
+    "ruff==0.7.2",
 ]
 [tool.hatch.envs.lint.scripts]
 typing = [
