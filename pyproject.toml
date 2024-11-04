@@ -239,45 +239,6 @@ cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/tr
 no-cov = "cov --no-cov {args}"
 debug =  "cov --no-cov -s --pdb --pdbcls=IPython.core.debugger:Pdb {args}"
 
-# Docs environment
-[tool.hatch.envs.docs]
-dependencies = [
-    "mkdocs~=1.6",
-    "mkdocs-material[imaging]~=9.4",
-    # Plugins
-    "mkdocs-include-markdown-plugin",
-    "mkdocs-gen-files",
-    "mkdocs-literate-nav",
-    "mkdocs-minify-plugin~=0.8",
-    "mkdocs-section-index",
-    "mkdocs-git-revision-date-localized-plugin~=1.2",
-    "mkdocstrings[python]",
-    "mkdocs-redirects~=1.2",
-    "mkdocs-glightbox~=0.4.0",
-    "mike~=2.1",
-    # Extensions
-    "pymdown-extensions~=10.9",
-    # Necessary for syntax highlighting in code blocks
-    "pygments~=2.18",
-    # Validation
-    "linkchecker~=10.4",
-    ]
-[tool.hatch.envs.docs.env-vars]
-SOURCE_DATE_EPOCH = "1580601600"
-PYTHONUNBUFFERED = "1"
-MKDOCS_CONFIG = "mkdocs.yml"
-[tool.hatch.envs.docs.scripts]
-build = "mkdocs build --config-file {env:MKDOCS_CONFIG} --clean --strict {args}"
-serve = "mkdocs serve --config-file {env:MKDOCS_CONFIG} --dev-addr localhost:8000 {args}"
-ci-build = "mike deploy --config-file {env:MKDOCS_CONFIG} --update-aliases {args}"
-# --ignore-url=None since the SUMMARY.md file leaves a <toc>None</toc> in sitemap.xml
-validate = "linkchecker --config .linkcheckerrc --ignore-url=/reference --ignore-url=None site"
-# https://github.com/linkchecker/linkchecker/issues/678
-build-check = [
-    "build",
-    "validate",
-]
-
 # Lint environment
 [tool.hatch.envs.lint]
 template = "lint"  # don't inherit from default!
@@ -308,4 +269,4 @@ all = [
 # Test matrix for various Python versions replacing the functionality of tox
 [[tool.hatch.envs.py-test.matrix]]
 template = ["test"]
-python = ["310", "311", "312"]
+python = ["39", "310", "311", "312"]
